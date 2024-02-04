@@ -65,10 +65,10 @@ app.get('/getPower', async (req, res) => {
 app.put('/updatePower', async (req, res) => {
 
     const body = {
-        serverName: "lpar-spp-AIX",
-        processors: 1,
+        serverName: process.env.LPAR_NAME,
+        processors: parseInt(process.env.PROCESSORS, 10) || 1,
+        memory: parseInt(process.env.MEMORY, 10) || 20,
         procType: "shared",
-        memory: 10,
         softwareLicences: {
             ibmCSS: false,
             ibmPHA: false,
