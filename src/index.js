@@ -66,8 +66,8 @@ app.put('/updatePower', async (req, res) => {
 
     const body = {
         serverName: process.env.LPAR_NAME,
-        processors: parseInt(process.env.PROCESSORS, 10) || 1,
-        memory: parseInt(process.env.MEMORY, 10) || 20,
+        processors: req.body.processors || 1,
+        memory: req.body.memory || 20,
         procType: "shared",
         softwareLicences: {
             ibmCSS: false,
@@ -76,7 +76,7 @@ app.put('/updatePower', async (req, res) => {
         },
         migratable: false,
         pinPolicy: "none",
-        storagePoolAffinity: true,
+        storagePoolAffinity: true
     }
 
     const session = await generateToken()
